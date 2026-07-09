@@ -8,6 +8,11 @@ export default defineConfig({
         compilerOptions: {
           // Отключаем data-v-inspector
           isCustomElement: (tag) => false
+        },
+        css: {
+          // Предотвращает удаление вебкит-префиксов минификатором
+          transformer: 'postcss',
+          minify: true
         }
       }
     })

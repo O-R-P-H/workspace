@@ -128,7 +128,6 @@
 
       <div class="botanic-services-glass">
         <div class="services-header about-animate-new">
-          <!-- Текст поменян местами при сохранении оригинальных классов -->
           <span class="about-label-new">Услуги и цены</span>
           <h2 class="services-title">Прайс-<strong>лист</strong></h2>
         </div>
@@ -208,7 +207,6 @@
     <div class="botanic-team-section" id="team">
       <div class="botanic-team-glass">
         <div class="services-header about-animate-new">
-          <!-- Текст поменян местами при сохранении оригинальных классов -->
           <span class="about-label-new">Команда профессионалов</span>
           <h2 class="services-title">Наши <strong>специалисты</strong></h2>
         </div>
@@ -285,7 +283,7 @@
             <div class="team-img-wrapper">
               <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9205-270x270.jpg" alt="Марина Яремчук" loading="lazy">
             </div>
-            <h3>Марина Яремчук</h3>
+            <h3>Marina Yaremchuk</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
             <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
             <p class="team-desc">Более 20 лет опыта работы. Чёткость и чистота работы, фантазийность и творческий подход, делает из процедур ухода настоящее искусство.</p>
@@ -496,7 +494,7 @@ onUnmounted(() => {
   font-family: 'Manrope', sans-serif !important;
 }
 
-/* Тонкое управление весами шрифтов - убираем переполнение жирности */
+/* Управление весами шрифтов */
 .botanic-scope-wrapper h1,
 .botanic-scope-wrapper h2,
 .botanic-scope-wrapper h3,
@@ -545,8 +543,13 @@ onUnmounted(() => {
 .botanic-scope-wrapper .botanic-header.sticky {
   padding: calc(16 / 1440 * 100vw) calc(72 / 1440 * 100vw) !important;
   background: rgba(5, 8, 6, 0.85) !important;
-  backdrop-filter: blur(12px) !important;
+
+  /* Строгий порядок свойств и триггер аппаратного ускорения */
   -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
   border-bottom: 1px solid rgba(24, 166, 31, 0.25) !important;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
 }
@@ -621,32 +624,6 @@ onUnmounted(() => {
   text-shadow: 0 0 10px rgba(24,166,31,0.4) !important;
 }
 
-.botanic-scope-wrapper .botanic-header-btn {
-  padding: calc(11 / 1440 * 100vw) calc(32 / 1440 * 100vw) !important;
-  font-size: calc(12 / 1440 * 100vw) !important;
-  font-weight: 500 !important;
-  text-transform: uppercase !important;
-  letter-spacing: calc(1.5 / 1440 * 100vw) !important;
-  color: #fff !important;
-  text-decoration: none !important;
-  background: rgba(255,255,255,0.03) !important;
-  border: 1px solid rgba(255,255,255,0.3) !important;
-  border-radius: 4px !important;
-  transition: all 0.4s ease !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
-  backdrop-filter: blur(5px) !important;
-  -webkit-backdrop-filter: blur(5px) !important;
-  flex-shrink: 0;
-  white-space: nowrap;
-  z-index: 2;
-  outline: none !important;
-}
-.botanic-scope-wrapper .botanic-header-btn:hover {
-  background: rgba(255,255,255,0.08) !important;
-  border-color: #fff !important;
-  box-shadow: 0 0 15px rgba(255,255,255,0.25), inset 0 0 10px rgba(255,255,255,0.1) !important;
-}
-
 .botanic-scope-wrapper .botanic-burger-btn {
   display: none !important;
   background: none !important;
@@ -714,7 +691,7 @@ onUnmounted(() => {
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   border-bottom: 1px solid rgba(24, 166, 31, 0.25);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 -80px 120px rgba(24,166,31,0.06);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 -80px 120px rgba(24, 166, 31, 0.06);
   z-index: 99999;
   transition: max-height 0.6s, padding 0.6s;
   padding: 0 5%;
@@ -761,12 +738,11 @@ onUnmounted(() => {
   .botanic-scope-wrapper .botanic-header.sticky {
     padding: 14px 5% !important;
     background: rgba(5, 8, 6, 0.85) !important;
-    backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
   }
   .botanic-scope-wrapper .botanic-nav-list { display: none !important; }
   .botanic-scope-wrapper .botanic-burger-btn { display: flex !important; }
-  .botanic-scope-wrapper .botanic-header-btn.desktop-only { display: none !important; }
   .botanic-scope-wrapper .botanic-logo-img { height: 36px !important; }
 }
 
@@ -816,10 +792,15 @@ onUnmounted(() => {
   position: relative;
   z-index: 2;
   overflow: hidden;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03) !important;
+
+  /* Эффект стекла - исправленный порядок свойств для билда */
+  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(16px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 2px solid #18A61F;
   border-radius: 0 16px 16px 0;
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
@@ -882,28 +863,6 @@ onUnmounted(() => {
   animation: fadeUp 0.6s 1.1s ease-out both;
 }
 
-.botanic-scope-wrapper .botanic-hero-btn {
-  align-self: flex-start;
-  padding: calc(16 / 1440 * 100vw) calc(48 / 1440 * 100vw) !important;
-  font-size: calc(12 / 1440 * 100vw) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1.5px !important;
-  color: #fff !important;
-  text-decoration: none !important;
-  background: transparent !important;
-  border: 1px solid rgba(255,255,255,0.4) !important;
-  border-radius: 4px !important;
-  transition: all 0.4s ease !important;
-  white-space: nowrap !important;
-  animation: fadeUp 0.6s 1.3s ease-out both;
-}
-
-.botanic-scope-wrapper .botanic-hero-btn:hover {
-  background: rgba(255,255,255,0.05) !important;
-  border-color: #fff !important;
-  box-shadow: 0 0 15px rgba(255,255,255,0.3), inset 0 0 10px rgba(255,255,255,0.1) !important;
-}
-
 .botanic-scope-wrapper .botanic-info-wrapper {
   position: relative;
   z-index: 2;
@@ -917,10 +876,15 @@ onUnmounted(() => {
 .botanic-scope-wrapper .botanic-info-card {
   position: relative;
   overflow: hidden;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.03) !important;
+
+  /* Эффект стекла - исправленный порядок свойств для билда */
+  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(16px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 2px solid #18A61F;
   border-radius: 0 16px 16px 0;
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
@@ -981,8 +945,8 @@ onUnmounted(() => {
     gap: 12px !important;
     animation: fadeUp 0.6s 0.3s ease-out both !important;
     background: rgba(10, 20, 12, 0.35) !important;
-    backdrop-filter: blur(40px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+    backdrop-filter: blur(40px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-left: 2px solid #18A61F !important;
     border-radius: 0 24px 24px 0;
@@ -1007,12 +971,6 @@ onUnmounted(() => {
     font-size: 13px !important; line-height: 1.5 !important; color: rgba(255,255,255,0.8) !important; margin: 0 !important;
     animation: fadeUp 0.6s 0.7s ease-out both !important;
   }
-  .botanic-scope-wrapper .hero-mobile-btn {
-    display: inline-block !important; align-self: flex-start !important; padding: 12px 28px !important; font-size: 12px !important;
-    text-transform: uppercase !important; letter-spacing: 2px !important; color: #fff !important; text-decoration: none !important;
-    background: rgba(24, 166, 31, 0.2) !important; border: 1px solid rgba(24, 166, 31, 0.5) !important; border-radius: 8px !important; margin: 4px 0 0 0 !important;
-    animation: fadeUp 0.6s 0.9s ease-out both !important;
-  }
 
   .botanic-scope-wrapper .hero-mobile-cards {
     display: flex !important;
@@ -1028,8 +986,8 @@ onUnmounted(() => {
     position: relative !important;
     overflow: hidden !important;
     background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
+    backdrop-filter: blur(16px) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-left: 2px solid #18A61F !important;
     border-top: none !important;
@@ -1091,8 +1049,13 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(30px) !important;
+
+  /* Эффект стекла - исправленный порядок свойств для билда */
   -webkit-backdrop-filter: blur(30px) !important;
+  backdrop-filter: blur(30px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(120 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1246,8 +1209,13 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.45) !important;
-  backdrop-filter: blur(30px) !important;
+
+  /* Эффект стекла - исправленный порядок свойств для билда */
   -webkit-backdrop-filter: blur(30px) !important;
+  backdrop-filter: blur(30px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1287,8 +1255,8 @@ onUnmounted(() => {
   padding: calc(40 / 1440 * 100vw) calc(30 / 1440 * 100vw) !important;
   box-sizing: border-box;
   overflow: hidden;
-  backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 .botanic-scope-wrapper .service-card h3 {
@@ -1323,7 +1291,6 @@ onUnmounted(() => {
 .botanic-scope-wrapper .service-price {
   color: #18A61F !important;
   white-space: nowrap !important;
-  margin-left: calc(15 / 1440 * 100vw) !important;
 }
 
 /* ==================== 3. TEAM SECTION ==================== */
@@ -1343,8 +1310,13 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(30px) !important;
+
+  /* Эффект стекла - исправленный порядок свойств для билда */
   -webkit-backdrop-filter: blur(30px) !important;
+  backdrop-filter: blur(30px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1468,8 +1440,13 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.45) !important;
-  backdrop-filter: blur(25px) !important;
+
+  /* Эффект стекла - исправленный порядок свойств для билда */
   -webkit-backdrop-filter: blur(25px) !important;
+  backdrop-filter: blur(25px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(60 / 1440 * 100vw);
