@@ -1,17 +1,20 @@
-/* ===== TILDA-STYLE GLOBAL RESET ===== */
-
-/* Блокировка горизонтального скролла */
 html, body, #app {
     overflow-x: hidden !important;
     max-width: 100% !important;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* Базовый сброс */
-*,
-*::before,
-*::after {
+/*
+  ВАЖНО: принудительный скроллбар как на Tilda.
+  Tilda имеет scrollbar всегда (15px при 1920px viewport).
+  Без него 100vw = 1920px вместо 1905px → все расчёты едут.
+*/
+html {
+    overflow-y: scroll !important;
+}
+
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
@@ -23,7 +26,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
     line-height: 1.5;
     color: #ffffff;
@@ -33,46 +36,10 @@ body {
     min-height: 100vh;
 }
 
-/* Сброс списков */
-ul, ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-/* Сброс ссылок */
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Сброс заголовков */
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    font-weight: 400;
-}
-
-/* Сброс параграфов */
-p {
-    margin: 0;
-}
-
-/* Убираем стандартные отступы у изображений */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Сброс кнопок */
-button {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-/* Для плавного скролла */
-html {
-    scroll-behavior: smooth;
-}
+ul, ol { list-style: none; margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; }
+h1, h2, h3, h4, h5, h6 { margin: 0; font-weight: 400; }
+p { margin: 0; }
+img { max-width: 100%; height: auto; display: block; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+html { scroll-behavior: smooth; }

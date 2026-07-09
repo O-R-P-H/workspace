@@ -128,8 +128,9 @@
 
       <div class="botanic-services-glass">
         <div class="services-header about-animate-new">
-          <span class="services-subtitle-small">Услуги и цены</span>
-          <h2 class="services-title-large">Прайс-лист</h2>
+          <!-- Текст поменян местами при сохранении оригинальных классов -->
+          <span class="about-label-new">Услуги и цены</span>
+          <h2 class="services-title">Прайс-<strong>лист</strong></h2>
         </div>
 
         <div class="services-grid">
@@ -207,8 +208,9 @@
     <div class="botanic-team-section" id="team">
       <div class="botanic-team-glass">
         <div class="services-header about-animate-new">
-          <span class="team-subtitle-small">Команда профессионалов</span>
-          <h2 class="team-title-large">Наши специалисты</h2>
+          <!-- Текст поменян местами при сохранении оригинальных классов -->
+          <span class="about-label-new">Команда профессионалов</span>
+          <h2 class="services-title">Наши <strong>специалисты</strong></h2>
         </div>
 
         <div class="team-grid">
@@ -218,9 +220,9 @@
               <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9654-270x270.jpg" alt="Антон Прокофьев" loading="lazy">
             </div>
             <h3>Антон Прокофьев</h3>
-            <div class="team-role">Парикмахер, колорист, технолог</div>
-            <div class="team-special-tag">Специалист по здоровью волос</div>
-            <p class="team-desc">Опыт с 1999 года, основатель Ботаник. Мастер точных геометрических стрижек, сложных укладок и глубокого восстановления поврежденной структуры волос.</p>
+            <div class="team-role">Парикмахер, колорист, технолог, основатель Ботаник</div>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по здоровью волос</p>
+            <p class="team-desc">Опыт с 1999 года. Мастер точных геометрических стрижек, сложных укладок и глубокого восстановления поврежденной структуры волос.</p>
           </div>
 
           <!-- 2. Ольга Хорунжая -->
@@ -230,7 +232,7 @@
             </div>
             <h3>Ольга Хорунжая</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
-            <div class="team-special-tag">Специалист по уходу за волосами</div>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
             <p class="team-desc">Более 20 лет опыта работы. Творческий подход и фантазийность в создании образов делает её клиентов счастливыми и по-настоящему неповторимыми.</p>
           </div>
 
@@ -241,7 +243,7 @@
             </div>
             <h3>Елена Дуброва</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
-            <div class="team-special-tag">Специалист по уходу за волосами</div>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
             <p class="team-desc">Более 20 лет опыта работы. Индивидуальный подход и максимальная практичность в работе сохраняет преданность клиентов к мастеру на долгие годы.</p>
           </div>
 
@@ -252,8 +254,8 @@
             </div>
             <h3>Антон Потапов</h3>
             <div class="team-role">Парикмахер-стилист</div>
-            <div class="team-special-tag">Специалист по уходу за волосами</div>
-            <p class="team-desc">Мастер из Санкт-Петербурга с более 20 летним опытом работы. Спокойствие и доверие к нему, как к мастеру, сразу располагает клиентов на открытый диалог и достижение максимально желанного образа.</p>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
+            <p class="team-desc">Мастер из Санкт-Петербурга с более 20 летним опытом работы. Спокойствие и доверие к нему, как к мастеру, сразу располагает клиентов на открытый диалог.</p>
           </div>
 
           <!-- 5. Ксения Грекова -->
@@ -263,8 +265,8 @@
             </div>
             <h3>Ксения Грекова</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
-            <div class="team-special-tag">Специалист по уходу за волосами</div>
-            <p class="team-desc">Более 20 лет опыта работы. Классические техники и технологии в её работе, уверенность и расположение к себе, позволяют клиентам добиваться самых модных и качественных результатов.</p>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
+            <p class="team-desc">Более 20 лет опыта работы. Классические техники и технологии, уверенность и расположение к себе, позволяют клиентам добиваться качественных результатов.</p>
           </div>
 
           <!-- 6. Лидия Глейзер (Овсянникова) -->
@@ -274,7 +276,7 @@
             </div>
             <h3>Лидия Глейзер</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
-            <div class="team-special-tag">Специалист по уходу за ногтями</div>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
             <p class="team-desc">Мастер с более 20 летним опытом работы. Исключительная лёгкость рук и ауры располагает клиентов к максимальному отдыху и комфорту.</p>
           </div>
 
@@ -285,8 +287,8 @@
             </div>
             <h3>Марина Яремчук</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
-            <div class="team-special-tag">Специалист по уходу за ногтями</div>
-            <p class="team-desc">Мастер ногтевого сервиса с более 20 летним опытом работы. Чёткость и чистота работы, фантазийность и творческий подход, делает из процедур ухода настоящее искусство.</p>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
+            <p class="team-desc">Более 20 лет опыта работы. Чёткость и чистота работы, фантазийность и творческий подход, делает из процедур ухода настоящее искусство.</p>
           </div>
 
           <!-- 8. Ольга Винник -->
@@ -301,15 +303,15 @@
 
           <!-- 9. Светлана Уткина -->
           <div class="team-card about-animate-new" style="transition-delay: 0.15s;">
-            <div class="team-img-wrapper placeholder-wrapper">
-              <!-- Заглушка аватара Светланы Уткиной -->
-              <svg class="team-avatar-placeholder" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="rgba(10, 20, 12, 0.35)"/>
+            <div class="team-img-wrapper" style="display: flex; align-items: center; justify-content: center; background: rgba(10, 20, 12, 0.05);">
+              <!-- Заглушка SVG вместо отсутствующего фото -->
+              <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.3;">
+                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#050806"/>
               </svg>
             </div>
             <h3>Светлана Уткина</h3>
             <div class="team-role">Администратор</div>
-            <p class="team-desc">Координирует работу салона, заботится о комфорте каждого гостя и помогает определиться с необходимыми процедурами.</p>
+            <p class="team-desc">Координирует работу салона, заботится о комфорте каждого гостя и помогает подобрать удобное время для визита.</p>
           </div>
         </div>
       </div>
@@ -323,6 +325,7 @@
 
       <div class="botanic-contacts-glass">
         <div class="contacts-container">
+
           <div class="contacts-info-side">
             <div class="contacts-header about-animate-new">
               <span class="about-label-new">Контакты</span>
@@ -340,8 +343,8 @@
               </div>
               <div class="contact-item-box">
                 <h4>Телефоны</h4>
-                <a href="tel:+79672301233" class="phone-link">+7 (967) 230-12-33</a>
-                <a href="tel:+79672320303" class="phone-link">+7 (967) 232-03-03</a>
+                <a href="tel:+79672301233" style="display: block; margin-bottom: 5px;">+7 (967) 230-12-33</a>
+                <a href="tel:+79672320303" style="display: block;">+7 (967) 232-03-03</a>
               </div>
               <div class="contact-item-box">
                 <h4>Электронная почта</h4>
@@ -350,24 +353,28 @@
             </div>
           </div>
 
+          <!-- Yandex Map Frame -->
           <div class="contacts-map-side about-animate-new">
             <iframe
                 src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9F%D1%83%D1%88%D0%BA%D0%B0%D1%80%D1%91%D0%B2%20%D0%BF%D0%B5%D1%80%D0%B5%D1%83%D0%BB%D0%BE%D0%BA%2C%20%D0%B4%D0%BE%D0%BC%208&ll=37.629399%2C55.767220&z=16"
                 width="100%"
                 height="100%"
                 frameborder="0"
-                style="border:0;"
-                allowfullscreen="true"
-            ></iframe>
+                style="border:0; filter: invert(0%) grayscale(0%);"
+                allowfullscreen="true">
+            </iframe>
           </div>
+
         </div>
 
+        <!-- FOOTER -->
         <footer class="botanic-footer">
           <div class="botanic-footer-copy">
             &copy; 2026 Botanic Salon. Все права защищены. Первый салон органического окрашивания в России.
           </div>
           <router-link to="/privacy-policy" class="botanic-footer-link">Политика конфиденциальности</router-link>
         </footer>
+
       </div>
     </div>
 
@@ -489,12 +496,11 @@ onUnmounted(() => {
   font-family: 'Manrope', sans-serif !important;
 }
 
-/* Вес шрифтов */
+/* Тонкое управление весами шрифтов - убираем переполнение жирности */
 .botanic-scope-wrapper h1,
 .botanic-scope-wrapper h2,
 .botanic-scope-wrapper h3,
-.botanic-scope-wrapper .services-title-large,
-.botanic-scope-wrapper .team-title-large,
+.botanic-scope-wrapper .services-title,
 .botanic-scope-wrapper .about-title-new,
 .botanic-scope-wrapper .contacts-title {
   font-weight: 300 !important;
@@ -502,8 +508,7 @@ onUnmounted(() => {
 .botanic-scope-wrapper h1 strong,
 .botanic-scope-wrapper h2 strong,
 .botanic-scope-wrapper h3 strong,
-.botanic-scope-wrapper .services-title-large strong,
-.botanic-scope-wrapper .team-title-large strong,
+.botanic-scope-wrapper .services-title strong,
 .botanic-scope-wrapper .about-title-new strong,
 .botanic-scope-wrapper .contacts-title strong {
   font-weight: 600 !important;
@@ -596,9 +601,6 @@ onUnmounted(() => {
   margin: 0;
   padding: 0;
   flex-wrap: nowrap;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .botanic-scope-wrapper .botanic-nav-link {
@@ -617,6 +619,32 @@ onUnmounted(() => {
 .botanic-scope-wrapper .botanic-nav-link:hover {
   color: #18A61F !important;
   text-shadow: 0 0 10px rgba(24,166,31,0.4) !important;
+}
+
+.botanic-scope-wrapper .botanic-header-btn {
+  padding: calc(11 / 1440 * 100vw) calc(32 / 1440 * 100vw) !important;
+  font-size: calc(12 / 1440 * 100vw) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: calc(1.5 / 1440 * 100vw) !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  background: rgba(255,255,255,0.03) !important;
+  border: 1px solid rgba(255,255,255,0.3) !important;
+  border-radius: 4px !important;
+  transition: all 0.4s ease !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  flex-shrink: 0;
+  white-space: nowrap;
+  z-index: 2;
+  outline: none !important;
+}
+.botanic-scope-wrapper .botanic-header-btn:hover {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: #fff !important;
+  box-shadow: 0 0 15px rgba(255,255,255,0.25), inset 0 0 10px rgba(255,255,255,0.1) !important;
 }
 
 .botanic-scope-wrapper .botanic-burger-btn {
@@ -685,7 +713,7 @@ onUnmounted(() => {
   background: rgba(10,20,12,0.95);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border-bottom: 1px solid rgba(24,166,31,0.25);
+  border-bottom: 1px solid rgba(24, 166, 31, 0.25);
   box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 -80px 120px rgba(24,166,31,0.06);
   z-index: 99999;
   transition: max-height 0.6s, padding 0.6s;
@@ -738,6 +766,7 @@ onUnmounted(() => {
   }
   .botanic-scope-wrapper .botanic-nav-list { display: none !important; }
   .botanic-scope-wrapper .botanic-burger-btn { display: flex !important; }
+  .botanic-scope-wrapper .botanic-header-btn.desktop-only { display: none !important; }
   .botanic-scope-wrapper .botanic-logo-img { height: 36px !important; }
 }
 
@@ -853,6 +882,28 @@ onUnmounted(() => {
   animation: fadeUp 0.6s 1.1s ease-out both;
 }
 
+.botanic-scope-wrapper .botanic-hero-btn {
+  align-self: flex-start;
+  padding: calc(16 / 1440 * 100vw) calc(48 / 1440 * 100vw) !important;
+  font-size: calc(12 / 1440 * 100vw) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: 1px solid rgba(255,255,255,0.4) !important;
+  border-radius: 4px !important;
+  transition: all 0.4s ease !important;
+  white-space: nowrap !important;
+  animation: fadeUp 0.6s 1.3s ease-out both;
+}
+
+.botanic-scope-wrapper .botanic-hero-btn:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: #fff !important;
+  box-shadow: 0 0 15px rgba(255,255,255,0.3), inset 0 0 10px rgba(255,255,255,0.1) !important;
+}
+
 .botanic-scope-wrapper .botanic-info-wrapper {
   position: relative;
   z-index: 2;
@@ -955,6 +1006,12 @@ onUnmounted(() => {
   .botanic-scope-wrapper .hero-mobile-text {
     font-size: 13px !important; line-height: 1.5 !important; color: rgba(255,255,255,0.8) !important; margin: 0 !important;
     animation: fadeUp 0.6s 0.7s ease-out both !important;
+  }
+  .botanic-scope-wrapper .hero-mobile-btn {
+    display: inline-block !important; align-self: flex-start !important; padding: 12px 28px !important; font-size: 12px !important;
+    text-transform: uppercase !important; letter-spacing: 2px !important; color: #fff !important; text-decoration: none !important;
+    background: rgba(24, 166, 31, 0.2) !important; border: 1px solid rgba(24, 166, 31, 0.5) !important; border-radius: 8px !important; margin: 4px 0 0 0 !important;
+    animation: fadeUp 0.6s 0.9s ease-out both !important;
   }
 
   .botanic-scope-wrapper .hero-mobile-cards {
@@ -1062,6 +1119,7 @@ onUnmounted(() => {
   flex: 0.9;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, calc(200 / 1440 * 100vw));
   gap: calc(20 / 1440 * 100vw);
 }
 
@@ -1094,6 +1152,7 @@ onUnmounted(() => {
   font-size: calc(17 / 1440 * 100vw) !important;
   line-height: 1.7 !important;
   color: #333 !important;
+  margin: 0 !important;
 }
 
 .botanic-scope-wrapper .about-features-new {
@@ -1129,9 +1188,10 @@ onUnmounted(() => {
   border: 1px solid rgba(24, 166, 31, 0.12);
   transition: all 0.3s ease;
   overflow: hidden;
-  height: calc(380 / 1440 * 100vw);
 }
 
+/* Теперь обе фотографии занимают всю высоту сетки, обеспечивая симметрию */
+.botanic-scope-wrapper .gallery-item { grid-row: span 2; height: 100%; }
 .botanic-scope-wrapper .gallery-item:hover {
   transform: translateY(calc(-5 / 1440 * 100vw)) !important;
   box-shadow: 0 calc(15 / 1440 * 100vw) calc(30 / 1440 * 100vw) rgba(24, 166, 31, 0.1) !important;
@@ -1197,26 +1257,17 @@ onUnmounted(() => {
 .botanic-scope-wrapper .services-header {
   text-align: left;
   margin-bottom: calc(60 / 1440 * 100vw);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
-.botanic-scope-wrapper .services-subtitle-small {
-  font-size: calc(14 / 1440 * 100vw) !important;
-  font-weight: 500 !important;
-  color: rgba(10, 17, 12, 0.6) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 2px !important;
-}
-
-.botanic-scope-wrapper .services-title-large {
-  font-size: calc(48 / 1440 * 100vw) !important;
-  line-height: 1.1 !important;
+.botanic-scope-wrapper .services-title {
+  font-size: calc(44 / 1440 * 100vw) !important;
+  line-height: 1.2 !important;
   color: #0a110c !important;
   margin: 0 !important;
   letter-spacing: -0.5px !important;
-  font-weight: 600 !important;
+}
+.botanic-scope-wrapper .services-title strong {
+  color: #18A61F !important;
 }
 
 .botanic-scope-wrapper .services-grid {
@@ -1244,7 +1295,6 @@ onUnmounted(() => {
   font-size: calc(22 / 1440 * 100vw) !important;
   color: #0a110c !important;
   margin: 0 0 calc(20 / 1440 * 100vw) 0 !important;
-  font-weight: 600 !important;
 }
 
 .botanic-scope-wrapper .service-list {
@@ -1274,7 +1324,6 @@ onUnmounted(() => {
   color: #18A61F !important;
   white-space: nowrap !important;
   margin-left: calc(15 / 1440 * 100vw) !important;
-  font-weight: 500 !important;
 }
 
 /* ==================== 3. TEAM SECTION ==================== */
@@ -1302,27 +1351,10 @@ onUnmounted(() => {
   box-sizing: border-box;
 }
 
-.botanic-scope-wrapper .team-subtitle-small {
-  font-size: calc(14 / 1440 * 100vw) !important;
-  font-weight: 500 !important;
-  color: rgba(10, 17, 12, 0.5) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 2px !important;
-}
-
-.botanic-scope-wrapper .team-title-large {
-  font-size: calc(48 / 1440 * 100vw) !important;
-  line-height: 1.1 !important;
-  color: #0a110c !important;
-  margin: 0 !important;
-  letter-spacing: -0.5px !important;
-  font-weight: 600 !important;
-}
-
 .botanic-scope-wrapper .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: calc(30 / 1440 * 100vw);
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(24 / 1440 * 100vw);
   max-width: calc(1300 / 1440 * 100vw);
   margin: 0 auto;
 }
@@ -1332,7 +1364,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.65) !important;
   border: 1px solid rgba(24, 166, 31, 0.1) !important;
   border-radius: calc(16 / 1440 * 100vw);
-  padding: calc(24 / 1440 * 100vw) !important;
+  padding: calc(16 / 1440 * 100vw) !important;
   box-sizing: border-box;
   text-align: center;
   transition: all 0.4s ease;
@@ -1352,7 +1384,7 @@ onUnmounted(() => {
 .botanic-scope-wrapper .team-img-wrapper {
   position: relative;
   width: 100%;
-  height: calc(280 / 1440 * 100vw);
+  height: calc(260 / 1440 * 100vw);
   border-radius: calc(12 / 1440 * 100vw);
   overflow: hidden;
   margin-bottom: calc(20 / 1440 * 100vw);
@@ -1366,46 +1398,22 @@ onUnmounted(() => {
   transition: transform 0.6s ease;
 }
 
-.botanic-scope-wrapper .placeholder-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(24, 166, 31, 0.03) !important;
-  border: 1px dashed rgba(24, 166, 31, 0.2);
-}
-
-.botanic-scope-wrapper .team-avatar-placeholder {
-  width: 45%;
-  height: auto;
-  opacity: 0.6;
-}
-
 .botanic-scope-wrapper .team-card h3 {
-  font-size: calc(22 / 1440 * 100vw) !important;
+  font-size: calc(20 / 1440 * 100vw) !important;
   color: #0a110c !important;
   margin: 0 0 calc(6 / 1440 * 100vw) 0 !important;
 }
 
 .botanic-scope-wrapper .team-card .team-role {
-  font-size: calc(13 / 1440 * 100vw) !important;
+  font-size: calc(12 / 1440 * 100vw) !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
-  color: #111 !important;
-  font-weight: 500;
-  margin: 0 0 calc(6 / 1440 * 100vw) 0 !important;
-}
-
-.botanic-scope-wrapper .team-card .team-special-tag {
-  font-size: calc(12 / 1440 * 100vw) !important;
   color: #18A61F !important;
-  font-weight: 600 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px;
-  margin-bottom: calc(16 / 1440 * 100vw) !important;
+  margin: 0 0 calc(12 / 1440 * 100vw) 0 !important;
 }
 
 .botanic-scope-wrapper .team-card .team-desc {
-  font-size: calc(14 / 1440 * 100vw) !important;
+  font-size: calc(13 / 1440 * 100vw) !important;
   line-height: 1.5 !important;
   color: #555 !important;
   margin: 0 !important;
@@ -1472,7 +1480,7 @@ onUnmounted(() => {
   max-width: calc(1300 / 1440 * 100vw);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: calc(60 / 1440 * 100vw);
   align-items: stretch !important;
 }
@@ -1520,11 +1528,6 @@ onUnmounted(() => {
   transition: color 0.3s;
 }
 
-.botanic-scope-wrapper .contact-item-box .phone-link {
-  display: block;
-  margin-bottom: 4px;
-}
-
 .botanic-scope-wrapper .contact-item-box a:hover {
   color: #18A61F !important;
 }
@@ -1532,7 +1535,7 @@ onUnmounted(() => {
 .botanic-scope-wrapper .contacts-map-side {
   width: 100%;
   height: 100% !important;
-  min-height: calc(380 / 1440 * 100vw);
+  min-height: calc(480 / 1440 * 100vw);
   border-radius: calc(16 / 1440 * 100vw);
   overflow: hidden;
   border: 1px solid rgba(24, 166, 31, 0.15) !important;
@@ -1589,6 +1592,7 @@ onUnmounted(() => {
 
 /* Mobile Overrides */
 @media screen and (max-width: 1024px) {
+  /* Абсолютно одинаковые отступы у всех блоков на мобилках */
   .botanic-scope-wrapper .botanic-about-section,
   .botanic-scope-wrapper .botanic-services-section,
   .botanic-scope-wrapper .botanic-team-section,
@@ -1597,6 +1601,7 @@ onUnmounted(() => {
     border-radius: 24px 24px 0 0 !important;
   }
 
+  /* Симметрия внутренних падингов */
   .botanic-scope-wrapper .botanic-about-glass,
   .botanic-scope-wrapper .botanic-services-glass,
   .botanic-scope-wrapper .botanic-team-glass,
@@ -1612,18 +1617,25 @@ onUnmounted(() => {
   .botanic-scope-wrapper .about-label-new { font-size: 12px !important; gap: 8px !important; letter-spacing: 2px !important; }
   .botanic-scope-wrapper .about-label-new::before { width: 30px !important; }
 
+  /* Исправление переноса «органического окрашивания» в одну строку */
   .botanic-scope-wrapper .about-title-new {
     font-size: 26px !important;
     line-height: 1.3 !important;
   }
+  .botanic-scope-wrapper .about-title-new strong {
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
 
+  /* Устранена каша и повышена контрастность/читаемость текста */
   .botanic-scope-wrapper .about-text-new {
     font-size: 16px !important;
     line-height: 1.8 !important;
     letter-spacing: 0.1px !important;
-    color: #111111 !important;
+    color: #111111 !important; /* Насыщенный читаемый цвет */
   }
 
+  /* Исправлено выравнивание галочек, увеличены отступы списка */
   .botanic-scope-wrapper .about-features-new {
     gap: 20px !important;
     margin-top: 30px !important;
@@ -1639,19 +1651,24 @@ onUnmounted(() => {
   .botanic-scope-wrapper .about-features-new li::before {
     font-size: 18px !important;
     left: 0 !important;
-    top: 2px !important;
+    top: 2px !important; /* Идеальное ровное выравнивание по высоте первой строки */
     line-height: 1 !important;
   }
 
   .botanic-scope-wrapper .about-gallery-col {
     grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
     width: 100% !important;
   }
   .botanic-scope-wrapper .gallery-item {
+    height: 200px !important;
+  }
+  .botanic-scope-wrapper .gallery-item:nth-child(1) {
+    grid-row: auto !important;
     height: 250px !important;
   }
 
-  .botanic-scope-wrapper .services-title-large {
+  .botanic-scope-wrapper .services-title {
     font-size: 30px !important;
   }
   .botanic-scope-wrapper .services-grid {
@@ -1682,9 +1699,6 @@ onUnmounted(() => {
   }
 
   /* Mobile Team */
-  .botanic-scope-wrapper .team-title-large {
-    font-size: 30px !important;
-  }
   .botanic-scope-wrapper .team-grid {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
@@ -1701,7 +1715,7 @@ onUnmounted(() => {
     font-size: 22px !important;
   }
   .botanic-scope-wrapper .team-card .team-role {
-    font-size: 13px !important;
+    font-size: 12px !important;
     margin-bottom: 8px !important;
   }
   .botanic-scope-wrapper .team-card .team-desc {
@@ -1748,7 +1762,7 @@ onUnmounted(() => {
   .botanic-scope-wrapper .botanic-about-glass { padding: 50px 5% 50px !important; }
   .botanic-scope-wrapper .about-title-new { font-size: 22px !important; }
   .botanic-scope-wrapper .botanic-services-glass { padding: 50px 5% 50px !important; }
-  .botanic-scope-wrapper .services-title-large { font-size: 26px !important; }
+  .botanic-scope-wrapper .services-title { font-size: 26px !important; }
   .botanic-scope-wrapper .botanic-team-glass { padding: 50px 5% 50px !important; }
   .botanic-scope-wrapper .botanic-contacts-glass { padding: 50px 5% 30px !important; }
   .botanic-scope-wrapper .contacts-title { font-size: 26px !important; }
