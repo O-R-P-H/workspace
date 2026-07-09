@@ -111,11 +111,11 @@
             </ul>
           </div>
 
-          <!-- Image gallery on the right -->
+          <!-- Image gallery on the right (Добавлен вызов Lightbox по клику) -->
           <div class="about-gallery-col">
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');"></div>
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg');"></div>
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');"></div>
+            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg')"></div>
+            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg')"></div>
+            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg')"></div>
           </div>
 
         </div>
@@ -351,7 +351,7 @@
               <div class="contact-item-box">
                 <h4>Телефоны</h4>
                 <a href="tel:+79672301233">+7 (967) 230-1233</a>
-                <a href="tel:+79672320303">+7 (967) 232-0303</a>
+                <a href="tel:+79672320303">+7 (967) 232-03-03</a>
               </div>
               <div class="contact-item-box">
                 <h4>Электронная почта</h4>
@@ -405,6 +405,14 @@
       </div>
     </div>
 
+    <!-- ==================== LIGHTBOX MODAL ==================== -->
+    <div class="botanic-lightbox-overlay" v-if="isLightboxOpen" @click="closeLightbox">
+      <div class="botanic-lightbox-content" @click.stop>
+        <button class="botanic-lightbox-close" @click="closeLightbox" aria-label="Закрыть модальное окно">&times;</button>
+        <img :src="activeImageUrl" class="botanic-lightbox-img" alt="Увеличенное изображение галереи">
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -414,6 +422,23 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const isSticky = ref(false);
 const isMobileMenuOpen = ref(false);
 
+// Реактивные переменные для работы Lightbox
+const isLightboxOpen = ref(false);
+const activeImageUrl = ref('');
+
+function openLightbox(url) {
+  activeImageUrl.value = url;
+  isLightboxOpen.value = true;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  isLightboxOpen.value = false;
+  if (!isMobileMenuOpen.value) {
+    document.body.style.overflow = '';
+  }
+}
+
 function toggleMobileMenu() {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
   document.body.style.overflow = isMobileMenuOpen.value ? 'hidden' : '';
@@ -421,7 +446,9 @@ function toggleMobileMenu() {
 
 function closeMobileMenu() {
   isMobileMenuOpen.value = false;
-  document.body.style.overflow = '';
+  if (!isLightboxOpen.value) {
+    document.body.style.overflow = '';
+  }
 }
 
 function handleScroll() {
@@ -452,18 +479,26 @@ function initAboutAnimations() {
   });
 }
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isMobileMenuOpen.value) {
+const handleKeyDown = (e) => {
+  if (e.key === 'Escape') {
+    if (isLightboxOpen.value) {
+      closeLightbox();
+    } else if (isMobileMenuOpen.value) {
       closeMobileMenu();
     }
-  });
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  document.addEventListener('keydown', handleKeyDown);
   initAboutAnimations();
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
+  document.removeEventListener('keydown', handleKeyDown);
+  document.body.style.overflow = '';
 });
 </script>
 
@@ -754,8 +789,8 @@ onUnmounted(() => {
   background: rgba(10,20,12,0.95);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
-  border-bottom: 1px solid rgba(24,166,31,0.25);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 -80px 120px rgba(24,166,31,0.06);
+  border-bottom: 1px solid rgba(24, 166, 31, 0.25);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4), inset 0 -80px 120px rgba(24, 166, 31, 0.06);
   z-index: 99999;
   transition: max-height 0.6s, padding 0.6s;
   padding: 0 5%;
@@ -1017,11 +1052,12 @@ onUnmounted(() => {
   gap: calc(28 / 1440 * 100vw);
 }
 
+/* Изменена сетка для вытянутых горизонтальных пропорций десктопной галереи */
 .botanic-scope-wrapper .about-gallery-col {
   flex: 0.9;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, calc(200 / 1440 * 100vw));
+  grid-template-rows: calc(180 / 1440 * 100vw) calc(130 / 1440 * 100vw);
   gap: calc(20 / 1440 * 100vw);
 }
 
@@ -1090,9 +1126,16 @@ onUnmounted(() => {
   border: 1px solid rgba(24, 166, 31, 0.12);
   transition: all 0.3s ease;
   overflow: hidden;
+  cursor: pointer !important; /* Курсор кликабельности для десктопа */
 }
 
-.botanic-scope-wrapper .gallery-item:nth-child(1) { grid-row: span 2; height: 100%; }
+/* На десктопе первая фотка занимает всю ширину верхнего ряда, устранен эффект 9:16 */
+.botanic-scope-wrapper .gallery-item:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 1;
+  height: 100%;
+}
+
 .botanic-scope-wrapper .gallery-item:hover {
   transform: translateY(calc(-5 / 1440 * 100vw)) !important;
   box-shadow: 0 calc(15 / 1440 * 100vw) calc(30 / 1440 * 100vw) rgba(24, 166, 31, 0.1) !important;
@@ -1189,7 +1232,6 @@ onUnmounted(() => {
   box-sizing: border-box;
   overflow: hidden;
   backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 .botanic-scope-wrapper .service-card h3 {
@@ -1233,9 +1275,8 @@ onUnmounted(() => {
   z-index: 20;
   margin-top: calc(-50 / 1440 * 100vw);
   width: 100%;
+  background-color: #F8FAF8 !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
-  overflow: hidden;
-  background: #F8FAF8 !important;
   box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.04) !important;
 }
 
@@ -1587,6 +1628,74 @@ onUnmounted(() => {
 .botanic-scope-wrapper .about-gallery-col .gallery-item:nth-child(2) { transition-delay: 0.45s; }
 .botanic-scope-wrapper .about-gallery-col .gallery-item:nth-child(3) { transition-delay: 0.6s; }
 
+/* ==================== LIGHTBOX MODAL STYLES ==================== */
+.botanic-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 8, 6, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000000 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInLightbox 0.3s forwards ease-out;
+}
+
+.botanic-lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botanic-lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid rgba(24, 166, 31, 0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transform: scale(0.95);
+  animation: scaleUpLightbox 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.botanic-lightbox-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  transition: color 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.botanic-lightbox-close:hover {
+  color: #18A61F;
+}
+
+@keyframes fadeInLightbox {
+  to { opacity: 1; }
+}
+
+@keyframes scaleUpLightbox {
+  to { transform: scale(1); }
+}
+
 /* Mobile Overrides */
 @media screen and (max-width: 1024px) {
   .botanic-scope-wrapper .botanic-header {
@@ -1698,17 +1807,6 @@ onUnmounted(() => {
   .botanic-scope-wrapper .hero-mobile-card:nth-child(2) { animation-delay: 0.85s; }
   .botanic-scope-wrapper .hero-mobile-card:nth-child(3) { animation-delay: 1.1s; }
 
-  @keyframes mobileCardReveal {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .botanic-scope-wrapper .hero-mobile-card::before {
-    content: '' !important; position: absolute !important; top: -30% !important; left: -30% !important; width: 160% !important; height: 160% !important;
-    background: radial-gradient(circle at 30% 40%, rgba(24,166,31,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(24,166,31,0.1) 0%, transparent 50%) !important;
-    filter: blur(20px) !important; z-index: 0 !important; pointer-events: none !important; opacity: 1 !important;
-  }
-
   .botanic-scope-wrapper .hero-mobile-card-digit {
     font-size: 22px !important; color: #fff !important; margin-bottom: 4px !important; position: relative !important; z-index: 1 !important;
     animation: mobileDigitGlow 2s 1.8s ease-in-out infinite alternate !important; text-shadow: 0 0 10px rgba(24,166,31,0.2) !important;
@@ -1783,6 +1881,7 @@ onUnmounted(() => {
   }
   .botanic-scope-wrapper .gallery-item:nth-child(1) {
     grid-row: auto !important;
+    grid-column: auto !important; /* Сброшено для предотвращения поломки одноколоночной сетки */
     height: 250px !important;
   }
 

@@ -112,9 +112,10 @@
             </ul>
           </div>
 
+          <!-- Колонки галереи О салоне (Добавлены события клика для Lightbox) -->
           <div class="about-gallery-col">
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');"></div>
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg');"></div>
+            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg')"></div>
+            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg')"></div>
           </div>
         </div>
       </div>
@@ -376,6 +377,14 @@
       </div>
     </div>
 
+    <!-- ==================== LIGHTBOX MODAL (Полноэкранный слайдер) ==================== -->
+    <div class="botanic-lightbox-overlay" v-if="isLightboxOpen" @click="closeLightbox">
+      <div class="botanic-lightbox-content" @click.stop>
+        <button class="botanic-lightbox-close" @click="closeLightbox" aria-label="Закрыть модальное окно">&times;</button>
+        <img :src="activeImageUrl" class="botanic-lightbox-img" alt="Фотография салона крупным планом">
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -385,7 +394,22 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const isSticky = ref(false)
 const isMenuOpen = ref(false)
 
-let observer = null
+// Реактивные переменные для Lightbox
+const isLightboxOpen = ref(false)
+const activeImageUrl = ref('')
+
+function openLightbox(url) {
+  activeImageUrl.value = url
+  isLightboxOpen.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+function closeLightbox() {
+  isLightboxOpen.value = false
+  if (!isMenuOpen.value) {
+    document.body.style.overflow = ''
+  }
+}
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -394,15 +418,30 @@ const toggleMenu = () => {
 
 const closeMenu = () => {
   isMenuOpen.value = false
-  document.body.style.overflow = ''
+  if (!isLightboxOpen.value) {
+    document.body.style.overflow = ''
+  }
 }
 
 const handleScroll = () => {
   isSticky.value = window.scrollY > 50
 }
 
+let observer = null
+
+const handleKeyDown = (e) => {
+  if (e.key === 'Escape') {
+    if (isLightboxOpen.value) {
+      closeLightbox()
+    } else if (isMenuOpen.value) {
+      closeMenu()
+    }
+  }
+}
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  document.addEventListener('keydown', handleKeyDown)
 
   const animElements = document.querySelectorAll('.botanic-scope-wrapper .about-animate-new')
   if (animElements.length) {
@@ -423,6 +462,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('keydown', handleKeyDown)
   if (observer) observer.disconnect()
   document.body.style.overflow = ''
 })
@@ -543,13 +583,8 @@ onUnmounted(() => {
 .botanic-scope-wrapper .botanic-header.sticky {
   padding: calc(16 / 1440 * 100vw) calc(72 / 1440 * 100vw) !important;
   background: rgba(5, 8, 6, 0.85) !important;
-
-  /* Строгий порядок свойств и триггер аппаратного ускорения */
-  -webkit-backdrop-filter: blur(12px) !important;
   backdrop-filter: blur(12px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
+  -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid rgba(24, 166, 31, 0.25) !important;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
 }
@@ -604,6 +639,9 @@ onUnmounted(() => {
   margin: 0;
   padding: 0;
   flex-wrap: nowrap;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .botanic-scope-wrapper .botanic-nav-link {
@@ -738,8 +776,8 @@ onUnmounted(() => {
   .botanic-scope-wrapper .botanic-header.sticky {
     padding: 14px 5% !important;
     background: rgba(5, 8, 6, 0.85) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
     backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
   }
   .botanic-scope-wrapper .botanic-nav-list { display: none !important; }
   .botanic-scope-wrapper .botanic-burger-btn { display: flex !important; }
@@ -792,15 +830,10 @@ onUnmounted(() => {
   position: relative;
   z-index: 2;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(16px) !important;
-  backdrop-filter: blur(16px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
   border-left: 2px solid #18A61F;
   border-radius: 0 16px 16px 0;
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
@@ -876,15 +909,10 @@ onUnmounted(() => {
 .botanic-scope-wrapper .botanic-info-card {
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(16px) !important;
-  backdrop-filter: blur(16px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
   border-left: 2px solid #18A61F;
   border-radius: 0 16px 16px 0;
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
@@ -916,123 +944,6 @@ onUnmounted(() => {
   line-height: 1.4 !important;
 }
 
-/* Стили мобильной версии Hero и карточек */
-@media screen and (max-width: 1024px) {
-  .botanic-scope-wrapper .botanic-hero-section {
-    display: block !important;
-    padding: 0 !important;
-    min-height: calc(100vh + 40px) !important;
-    min-height: calc(100dvh + 40px) !important;
-  }
-  .botanic-scope-wrapper .botanic-hero-section::before { background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%) !important; }
-  .botanic-scope-wrapper .botanic-glass-panel,
-  .botanic-scope-wrapper .botanic-info-wrapper { display: none !important; }
-
-  .botanic-scope-wrapper .hero-mobile {
-    position: relative !important;
-    z-index: 2 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-evenly !important;
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
-    padding: 100px 24px 50px 24px !important;
-    box-sizing: border-box !important;
-  }
-  .botanic-scope-wrapper .hero-mobile-top {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    animation: fadeUp 0.6s 0.3s ease-out both !important;
-    background: rgba(10, 20, 12, 0.35) !important;
-    -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
-    backdrop-filter: blur(40px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-left: 2px solid #18A61F !important;
-    border-radius: 0 24px 24px 0;
-    padding: 24px 20px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
-    position: relative !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-  }
-  .botanic-scope-wrapper .hero-mobile-top::before {
-    content: '' !important; position: absolute !important; top: -50% !important; left: -50% !important; width: 200% !important; height: 200% !important;
-    background: radial-gradient(circle at 30% 40%, rgba(24,166,31,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(24,166,31,0.1) 0%, transparent 50%) !important;
-    filter: blur(20px) !important; z-index: 0 !important; pointer-events: none !important;
-  }
-  .botanic-scope-wrapper .hero-mobile-top > * { position: relative !important; z-index: 1 !important; }
-  .botanic-scope-wrapper .hero-mobile-title {
-    font-size: 30px !important; line-height: 1.15 !important; color: #fff !important; margin: 0 !important; text-transform: uppercase !important;
-    animation: fadeUp 0.6s 0.5s ease-out both !important;
-  }
-  .botanic-scope-wrapper .hero-mobile-title strong { color: #18A61F !important; text-shadow: 0 0 20px rgba(24,166,31,0.4) !important; }
-  .botanic-scope-wrapper .hero-mobile-text {
-    font-size: 13px !important; line-height: 1.5 !important; color: rgba(255,255,255,0.8) !important; margin: 0 !important;
-    animation: fadeUp 0.6s 0.7s ease-out both !important;
-  }
-
-  .botanic-scope-wrapper .hero-mobile-cards {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
-    margin-top: 30px !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  .botanic-scope-wrapper .hero-mobile-card {
-    width: 100% !important;
-    position: relative !important;
-    overflow: hidden !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-left: 2px solid #18A61F !important;
-    border-top: none !important;
-    border-radius: 0 16px 16px 0 !important;
-    padding: 16px 20px !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-    animation: mobileCardReveal 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) both !important;
-  }
-  .botanic-scope-wrapper .hero-mobile-card:nth-child(1) { animation-delay: 0.6s; }
-  .botanic-scope-wrapper .hero-mobile-card:nth-child(2) { animation-delay: 0.85s; }
-  .botanic-scope-wrapper .hero-mobile-card:nth-child(3) { animation-delay: 1.1s; }
-
-  @keyframes mobileCardReveal {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .botanic-scope-wrapper .hero-mobile-card::before {
-    content: '' !important; position: absolute !important; top: -30% !important; left: -30% !important; width: 160% !important; height: 160% !important;
-    background: radial-gradient(circle at 30% 40%, rgba(24,166,31,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(24,166,31,0.1) 0%, transparent 50%) !important;
-    filter: blur(20px) !important; z-index: 0 !important; pointer-events: none !important; opacity: 1 !important;
-  }
-
-  .botanic-scope-wrapper .hero-mobile-card-digit {
-    font-size: 22px !important; color: #fff !important; margin-bottom: 4px !important; position: relative !important; z-index: 1 !important;
-    text-shadow: 0 0 10px rgba(24,166,31,0.2) !important;
-  }
-  .botanic-scope-wrapper .hero-mobile-card-text { font-size: 11px !important; color: rgba(255,255,255,0.55) !important; line-height: 1.3 !important; position: relative !important; z-index: 1 !important; }
-}
-
-@media screen and (max-width: 380px) {
-  .botanic-scope-wrapper .hero-mobile { padding: 80px 16px 50px 16px !important; }
-  .botanic-scope-wrapper .hero-mobile-title { font-size: 26px !important; }
-  .botanic-scope-wrapper .hero-mobile-cards { gap: 6px !important; margin-top: 24px !important; }
-  .botanic-scope-wrapper .hero-mobile-card { padding: 14px 16px !important; }
-  .botanic-scope-wrapper .hero-mobile-card-digit { font-size: 20px !important; }
-  .botanic-scope-wrapper .hero-mobile-card-text { font-size: 11px !important; }
-}
-
 /* ==================== 1. ABOUT SECTION ==================== */
 .botanic-scope-wrapper .botanic-about-section {
   position: relative;
@@ -1049,13 +960,8 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.4) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(30px) !important;
   backdrop-filter: blur(30px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
+  -webkit-backdrop-filter: blur(30px) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(120 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1078,11 +984,12 @@ onUnmounted(() => {
   gap: calc(28 / 1440 * 100vw);
 }
 
+/* Сетка галереи 1:1 на десктопе с вытянутыми горизонтальными пропорциями 2-х фотографий */
 .botanic-scope-wrapper .about-gallery-col {
   flex: 0.9;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, calc(200 / 1440 * 100vw));
+  grid-template-rows: calc(260 / 1440 * 100vw); /* Идеальное горизонтальное соотношение */
   gap: calc(20 / 1440 * 100vw);
 }
 
@@ -1151,10 +1058,10 @@ onUnmounted(() => {
   border: 1px solid rgba(24, 166, 31, 0.12);
   transition: all 0.3s ease;
   overflow: hidden;
+  height: 100%; /* Занимает всю высоту строки грида на десктопе */
+  cursor: pointer !important; /* Делаем фотографии кликабельными на десктопе */
 }
 
-/* Теперь обе фотографии занимают всю высоту сетки, обеспечивая симметрию */
-.botanic-scope-wrapper .gallery-item { grid-row: span 2; height: 100%; }
 .botanic-scope-wrapper .gallery-item:hover {
   transform: translateY(calc(-5 / 1440 * 100vw)) !important;
   box-shadow: 0 calc(15 / 1440 * 100vw) calc(30 / 1440 * 100vw) rgba(24, 166, 31, 0.1) !important;
@@ -1209,13 +1116,8 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.45) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(30px) !important;
   backdrop-filter: blur(30px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
+  -webkit-backdrop-filter: blur(30px) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1255,8 +1157,8 @@ onUnmounted(() => {
   padding: calc(40 / 1440 * 100vw) calc(30 / 1440 * 100vw) !important;
   box-sizing: border-box;
   overflow: hidden;
-  -webkit-backdrop-filter: blur(10px) !important;
   backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
 }
 
 .botanic-scope-wrapper .service-card h3 {
@@ -1310,13 +1212,8 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.4) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(30px) !important;
   backdrop-filter: blur(30px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
+  -webkit-backdrop-filter: blur(30px) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1440,13 +1337,8 @@ onUnmounted(() => {
   z-index: 2;
   width: 100%;
   background: rgba(255, 255, 255, 0.45) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(25px) !important;
   backdrop-filter: blur(25px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
+  -webkit-backdrop-filter: blur(25px) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(60 / 1440 * 100vw);
@@ -1567,9 +1459,81 @@ onUnmounted(() => {
 .botanic-scope-wrapper .about-gallery-col .gallery-item:nth-child(1) { transition-delay: 0.3s; }
 .botanic-scope-wrapper .about-gallery-col .gallery-item:nth-child(2) { transition-delay: 0.45s; }
 
+/* ==================== LIGHTBOX MODAL STYLES ==================== */
+.botanic-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 8, 6, 0.95);
+
+  /* Исправленный синтаксис стекла для работы в билде */
+  -webkit-backdrop-filter: blur(15px) !important;
+  backdrop-filter: blur(15px) !important;
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+
+  z-index: 1000000 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeInLightbox 0.3s forwards ease-out;
+}
+
+.botanic-lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botanic-lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid rgba(24, 166, 31, 0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transform: scale(0.95);
+  animation: scaleUpLightbox 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.botanic-lightbox-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  transition: color 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.botanic-lightbox-close:hover {
+  color: #18A61F;
+}
+
+@keyframes fadeInLightbox {
+  to { opacity: 1; }
+}
+
+@keyframes scaleUpLightbox {
+  to { transform: scale(1); }
+}
+
 /* Mobile Overrides */
 @media screen and (max-width: 1024px) {
-  /* Абсолютно одинаковые отступы у всех блоков на мобилках */
   .botanic-scope-wrapper .botanic-about-section,
   .botanic-scope-wrapper .botanic-services-section,
   .botanic-scope-wrapper .botanic-team-section,
@@ -1578,7 +1542,6 @@ onUnmounted(() => {
     border-radius: 24px 24px 0 0 !important;
   }
 
-  /* Симметрия внутренних падингов */
   .botanic-scope-wrapper .botanic-about-glass,
   .botanic-scope-wrapper .botanic-services-glass,
   .botanic-scope-wrapper .botanic-team-glass,
@@ -1594,7 +1557,6 @@ onUnmounted(() => {
   .botanic-scope-wrapper .about-label-new { font-size: 12px !important; gap: 8px !important; letter-spacing: 2px !important; }
   .botanic-scope-wrapper .about-label-new::before { width: 30px !important; }
 
-  /* Исправление переноса «органического окрашивания» в одну строку */
   .botanic-scope-wrapper .about-title-new {
     font-size: 26px !important;
     line-height: 1.3 !important;
@@ -1604,15 +1566,13 @@ onUnmounted(() => {
     display: inline-block !important;
   }
 
-  /* Устранена каша и повышена контрастность/читаемость текста */
   .botanic-scope-wrapper .about-text-new {
     font-size: 16px !important;
     line-height: 1.8 !important;
     letter-spacing: 0.1px !important;
-    color: #111111 !important; /* Насыщенный читаемый цвет */
+    color: #111111 !important;
   }
 
-  /* Исправлено выравнивание галочек, увеличены отступы списка */
   .botanic-scope-wrapper .about-features-new {
     gap: 20px !important;
     margin-top: 30px !important;
@@ -1628,7 +1588,7 @@ onUnmounted(() => {
   .botanic-scope-wrapper .about-features-new li::before {
     font-size: 18px !important;
     left: 0 !important;
-    top: 2px !important; /* Идеальное ровное выравнивание по высоте первой строки */
+    top: 2px !important;
     line-height: 1 !important;
   }
 
@@ -1638,11 +1598,7 @@ onUnmounted(() => {
     width: 100% !important;
   }
   .botanic-scope-wrapper .gallery-item {
-    height: 200px !important;
-  }
-  .botanic-scope-wrapper .gallery-item:nth-child(1) {
-    grid-row: auto !important;
-    height: 250px !important;
+    height: 250px !important; /* На мобилке сохранена исходная высота */
   }
 
   .botanic-scope-wrapper .services-title {
@@ -1675,7 +1631,6 @@ onUnmounted(() => {
     margin-left: 15px !important;
   }
 
-  /* Mobile Team */
   .botanic-scope-wrapper .team-grid {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
@@ -1699,7 +1654,6 @@ onUnmounted(() => {
     font-size: 14px !important;
   }
 
-  /* Mobile Contacts */
   .botanic-scope-wrapper .contacts-container {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
