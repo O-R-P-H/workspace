@@ -5,7 +5,7 @@
     <header class="botanic-header" :class="{ 'sticky': isSticky }">
       <div class="botanic-logo-group">
         <router-link to="/" class="botanic-logo-link">
-          <img src="https://static.tildacdn.ink/tild3634-3765-4962-b736-613966666539/Group_121.png" alt="Botanic Salon" class="botanic-logo-img">
+          <img :src="logoImg" alt="Botanic Salon" class="botanic-logo-img">
         </router-link>
       </div>
 
@@ -114,8 +114,8 @@
 
           <!-- О Салоне: Галерея кликабельна для открытия Lightbox -->
           <div class="about-gallery-col">
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg')"></div>
-            <div class="gallery-item about-animate-new" style="background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg');" @click="openLightbox('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg')"></div>
+            <div class="gallery-item about-animate-new" :style="{ backgroundImage: 'url(' + salon5 + ')' }" @click="openLightbox(salon5)"></div>
+            <div class="gallery-item about-animate-new" :style="{ backgroundImage: 'url(' + salon8 + ')' }" @click="openLightbox(salon8)"></div>
           </div>
         </div>
       </div>
@@ -213,10 +213,10 @@
         </div>
 
         <div class="team-grid">
-          <!-- 1. Антон Прокофьев (Описание обновлено по запросу) -->
+          <!-- 1. Антон Прокофьев -->
           <div class="team-card about-animate-new">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9654-270x270.jpg" alt="Антон Прокофьев" loading="lazy">
+              <img :src="teamProkofiev" alt="Антон Прокофьев" loading="lazy">
             </div>
             <h3>Антон Прокофьев</h3>
             <div class="team-role">Парикмахер, колорист, технолог, основатель Ботаник</div>
@@ -227,7 +227,7 @@
           <!-- 2. Ольга Хорунжая -->
           <div class="team-card about-animate-new" style="transition-delay: 0.15s;">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9272-270x270.jpg" alt="Ольга Хорунжая" loading="lazy">
+              <img :src="teamKhorunzhaya" alt="Ольга Хорунжая" loading="lazy">
             </div>
             <h3>Ольга Хорунжая</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
@@ -238,7 +238,7 @@
           <!-- 3. Елена Дуброва -->
           <div class="team-card about-animate-new" style="transition-delay: 0.3s;">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9548-270x270.jpg" alt="Елена Дуброва" loading="lazy">
+              <img :src="teamDubrova" alt="Елена Дуброва" loading="lazy">
             </div>
             <h3>Елена Дуброва</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
@@ -249,7 +249,7 @@
           <!-- 4. Антон Потапов -->
           <div class="team-card about-animate-new">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9436-270x270.jpg" alt="Антон Потапов" loading="lazy">
+              <img :src="teamPotapov" alt="Антон Потапов" loading="lazy">
             </div>
             <h3>Антон Потапов</h3>
             <div class="team-role">Парикмахер-стилист</div>
@@ -260,7 +260,7 @@
           <!-- 5. Ксения Грекова -->
           <div class="team-card about-animate-new" style="transition-delay: 0.15s;">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9377-270x270.jpg" alt="Ксения Грекова" loading="lazy">
+              <img :src="teamGrekova" alt="Ксения Грекова" loading="lazy">
             </div>
             <h3>Ксения Грекова</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
@@ -268,10 +268,10 @@
             <p class="team-desc">Более 20 лет опыта работы. Классические техники и технологии, уверенность и расположение к себе, позволяют клиентам добиваться качественных результатов.</p>
           </div>
 
-          <!-- 6. Лидия Глейзер (Овсянникова) -->
+          <!-- 6. Лидия Глейзер -->
           <div class="team-card about-animate-new" style="transition-delay: 0.3s;">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9106-270x270.jpg" alt="Лидия Глейзер (Овсянникова)" loading="lazy">
+              <img :src="teamGleyzer" alt="Лидия Глейзер (Овсянникова)" loading="lazy">
             </div>
             <h3>Лидия Глейзер</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
@@ -282,7 +282,7 @@
           <!-- 7. Марина Яремчук -->
           <div class="team-card about-animate-new" style="transition-delay: 0.45s;">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9205-270x270.jpg" alt="Марина Яремчук" loading="lazy">
+              <img :src="teamYaremchuk" alt="Марина Яремчук" loading="lazy">
             </div>
             <h3>Marina Yaremchuk</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
@@ -293,23 +293,10 @@
           <!-- 8. Ольга Винник -->
           <div class="team-card about-animate-new">
             <div class="team-img-wrapper">
-              <img src="https://www.botanic-salon.ru/wp-content/uploads/2018/11/MG_9147-270x270.jpg" alt="Ольга Винник" loading="lazy">
+              <img :src="teamVinnik" alt="Ольга Винник" loading="lazy">
             </div>
             <h3>Ольга Винник</h3>
             <div class="team-role">Старший администратор</div>
-            <p class="team-desc">Координирует работу салона, заботится о комфорте каждого гостя и помогает подобрать удобное время для визита.</p>
-          </div>
-
-          <!-- 9. Светлана Уткина -->
-          <div class="team-card about-animate-new" style="transition-delay: 0.15s;">
-            <div class="team-img-wrapper" style="display: flex; align-items: center; justify-content: center; background: rgba(10, 20, 12, 0.05);">
-              <!-- Заглушка SVG вместо отсутствующего фото -->
-              <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.3;">
-                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#050806"/>
-              </svg>
-            </div>
-            <h3>Светлана Уткина</h3>
-            <div class="team-role">Администратор</div>
             <p class="team-desc">Координирует работу салона, заботится о комфорте каждого гостя и помогает подобрать удобное время для визита.</p>
           </div>
         </div>
@@ -390,6 +377,19 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+
+// Импорт локальных изображений
+import logoImg from '@/assets/images/logo.png'
+import salon5 from '@/assets/images/salon5.jpg'
+import salon8 from '@/assets/images/salon8.jpg'
+import teamProkofiev from '@/assets/images/team-prokofiev.jpg'
+import teamKhorunzhaya from '@/assets/images/team-khorunzhaya.jpg'
+import teamDubrova from '@/assets/images/team-dubrova.jpg'
+import teamPotapov from '@/assets/images/team-potapov.jpg'
+import teamGrekova from '@/assets/images/team-grekova.jpg'
+import teamGleyzer from '@/assets/images/team-gleyzer.jpg'
+import teamYaremchuk from '@/assets/images/team-yaremchuk.jpg'
+import teamVinnik from '@/assets/images/team-vinnik.jpg'
 
 const isSticky = ref(false)
 const isMenuOpen = ref(false)
@@ -814,8 +814,8 @@ onUnmounted(() => {
   animation: fadeBg 16s infinite ease-in-out;
 }
 
-.botanic-scope-wrapper .botanic-bg-slide:nth-child(1) { background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon5.jpg'); }
-.botanic-scope-wrapper .botanic-bg-slide:nth-child(2) { background-image: url('https://www.botanic-salon.ru/wp-content/uploads/2019/02/salon8.jpg'); animation-delay: -8s; }
+.botanic-scope-wrapper .botanic-bg-slide:nth-child(1) { background-image: url('@/assets/images/salon5.jpg'); }
+.botanic-scope-wrapper .botanic-bg-slide:nth-child(2) { background-image: url('@/assets/images/salon8.jpg'); animation-delay: -8s; }
 
 .botanic-scope-wrapper .botanic-hero-section::before {
   content: '';
@@ -944,7 +944,7 @@ onUnmounted(() => {
   color: #fff !important;
   margin: 0 0 calc(6 / 1440 * 100vw) 0 !important;
   line-height: 1 !important;
-  text-shadow: 0 0 20px rgba(24,166,31,0.3);
+  text-shadow: 0 0 20px rgba(24,166,31,0.2) !important;
 }
 
 .botanic-scope-wrapper .botanic-info-card p {
