@@ -231,7 +231,7 @@
             </div>
             <h3>Ольга Хорунжая</h3>
             <div class="team-role">Парикмахер-стилист, художник-модельер</div>
-            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
+            <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за воласами</p>
             <p class="team-desc">Более 20 лет опыта работы. Творческий подход и фантазийность в создании образов делает её клиентов счастливыми и по-настоящему неповторимыми.</p>
           </div>
 
@@ -276,7 +276,7 @@
             <h3>Лидия Глейзер</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
             <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
-            <p class="team-desc">Мастер с более 20 летним опытом работы. Исключительная лёгкость рук и ауры располагает клиентов к максимальному отдыху и комфорту.</p>
+            <p class="team-desc">Мастер с более 20 летним опытом работы. Исключительная лёгкость рук и ары располагает клиентов к максимальному отдыху и комфорту.</p>
           </div>
 
           <!-- 7. Марина Яремчук -->
@@ -1023,9 +1023,9 @@ onUnmounted(() => {
     width: 100% !important;
     position: relative !important;
     overflow: hidden !important;
-    background: rgba(255, 255, 255, 0.03) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    backdrop-filter: blur(16px) !important;
+    background: rgba(10, 20, 12, 0.35) !important; /* Скопирован оригинальный цвет фона */
+    -webkit-backdrop-filter: blur(40px) saturate(180%) !important; /* Скопировано оригинальное размытие */
+    backdrop-filter: blur(40px) saturate(180%) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-left: 2px solid #18A61F !important;
     border-top: none !important;
@@ -1043,6 +1043,21 @@ onUnmounted(() => {
   .botanic-scope-wrapper .hero-mobile-card:nth-child(1) { animation-delay: 0.6s; }
   .botanic-scope-wrapper .hero-mobile-card:nth-child(2) { animation-delay: 0.85s; }
   .botanic-scope-wrapper .hero-mobile-card:nth-child(3) { animation-delay: 1.1s; }
+
+  /* Световой градиент карточки скопирован 1-к-1 с большой карточки */
+  .botanic-scope-wrapper .hero-mobile-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -50% !important;
+    left: -50% !important;
+    width: 200% !important;
+    height: 200% !important;
+    background: radial-gradient(circle at 30% 40%, rgba(24,166,31,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(24,166,31,0.1) 0%, transparent 50%) !important;
+    filter: blur(20px) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+  }
 
   .botanic-scope-wrapper .hero-mobile-card-digit {
     font-size: 22px !important; color: #fff !important; margin-bottom: 4px !important; position: relative !important; z-index: 1 !important;
@@ -1338,14 +1353,9 @@ onUnmounted(() => {
   position: relative;
   z-index: 2;
   width: 100%;
-  background: rgba(255, 255, 255, 0.4) !important;
-
-  /* Эффект стекла - исправленный порядок свойств для билда */
-  -webkit-backdrop-filter: blur(30px) !important;
+  background: rgba(255, 255, 255, 0.4) !important; /* Матовое стекло */
   backdrop-filter: blur(30px) !important;
-  transform: translateZ(0);
-  will-change: backdrop-filter;
-
+  -webkit-backdrop-filter: blur(30px) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.7) !important;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   padding: calc(110 / 1440 * 100vw) 5% calc(160 / 1440 * 100vw);
@@ -1428,7 +1438,7 @@ onUnmounted(() => {
   width: 100%;
   border-radius: calc(40 / 1440 * 100vw) calc(40 / 1440 * 100vw) 0 0;
   overflow: hidden;
-  background: #ffffff !important;
+  background: #ffffff !important; /* Подложка под свечение */
   color: #0a110c !important;
   box-shadow: 0 -15px 30px rgba(24, 166, 31, 0.05) !important;
 }
@@ -1444,7 +1454,7 @@ onUnmounted(() => {
 .botanic-scope-wrapper .botanic-contacts-aurora-extra::after {
   content: '' !important; position: absolute !important;
   filter: blur(100px) !important; opacity: 0.9 !important;
-  background: rgba(24, 166, 31, 0.75) !important;
+  background: rgba(24, 166, 31, 0.75) !important; /* Идентичный Glow */
   border-radius: 50% !important;
 }
 .botanic-scope-wrapper .botanic-contacts-aurora::before {
@@ -1483,7 +1493,7 @@ onUnmounted(() => {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: calc(60 / 1440 * 100vw);
-  align-items: stretch !important;
+  align-items: stretch !important; /* Stretch columns to have equal heights */
 }
 
 .botanic-scope-wrapper .contacts-info-side {
@@ -1841,6 +1851,30 @@ onUnmounted(() => {
     width: 36px;
     height: 36px;
     font-size: 24px;
+  }
+}
+
+/* ==================== MISSING ANIMATIONS ==================== */
+@keyframes mobileCardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(24, 166, 31, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    background: rgba(10, 20, 12, 0.35) !important; /* Цвет скопирован 1-к-1 */
+    backdrop-filter: blur(40px) saturate(180%) !important; /* Размытие и насыщенность скопированы 1-к-1 */
+    -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    border-left-color: #18A61F !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important; /* Тень скопирована 1-к-1 */
   }
 }
 </style>
