@@ -284,7 +284,7 @@
             <div class="team-img-wrapper">
               <img :src="teamYaremchuk" alt="Марина Яремчук" loading="lazy">
             </div>
-            <h3>Marina Yaremchuk</h3>
+            <h3>Марина Яремчук</h3>
             <div class="team-role">Мастер ногтевого сервиса</div>
             <p class="team-desc" style="color: #18A61F; font-weight: 600 !important; margin-bottom: 8px;">Специалист по уходу за волосами</p>
             <p class="team-desc">Более 20 лет опыта работы. Чёткость и чистота работы, фантазийность и творческий подход, делает из процедур ухода настоящее искусство.</p>
